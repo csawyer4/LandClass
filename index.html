@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Urban Land Classification</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js'></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>Downtown and Central Seattle</h1>
+      <h2>Impervious and Pervious Surfaces Identified Using ArcMap</h2>
+
+    </div>
+
+    <p>The goal of this project is to use Digital Elevation Models (DEMs) to identify impervious versus pervious surfaces in an area. Talebi et al. (2014) is where I drew my inspiration from as “Effective storm water management requires urban classification information to determine the quantity and quality of runoff from different urban surfaces”. I am interested in the water cycle in urban areas and how our infrastructure leads to urban flooding. Being able to identify buildings, roads, trees, and lawns/open soils will be very beneficial in helping me understand the flow of water.  <br> The area I have chosen to analyze is in Downtown and Central Seattle. I chose this area because it is a very urban location that had building outline data available. I was going to look at Kent but could not find publicly available data on building outlines to complete the  project. Bare Earth and highest hits DEMs were gathered from the Puget Sound LiDAR Consortium. The building outlines were collected from the City of Seattle’s Open Data Portal. All King County roads were downloaded from the U.S. Census. The National Agriculture Imagery Program (NAIP) imagery of Seattle was taken from The National Map. The imagery is not the highest resolution, being 1m by 1m, instead of 1/3m by 1/3m like the imagery used in Talebi et al. (2014). This could lower the quality of the classifications identified at the end.
+    </p>
+
+    <div class="row">
+      <div class="columnL">
+        <h3>Aerial Photo</h3>
+        <p>some text</p>
+      </div>
+      <div class="columnR">
+        <h3>Raster Categories</h3>
+        <p>some text</p>
+      </div>
+    </div>
+
+    <p>After downloading and unzipping the data I converted them to a projected coordinate system that was appropriate for Seattle (NAD 1983 HARN StatePlane Washington North 4601 Feet). Instead of using ASCII files and converting those to DEMs I decided to start with the DEMs to save time and space. The first step was to convert the two DEMs into a normalized Digital Surface Model (nDSM) by using the minus tool to subtract the bare Earth DEM from the highest hits DEM (Talebi et al. 2014). Because I was unable to use the binary threshold function to split the raster by height, I used the raster calculator to make the split value raster. The raster was split into two values, those that were 6 feet and above were now 0 and those below 6 feet became 1. This was to separate the trees and buildings from the roads and ground. Next, a buffer of 15 feet was created around the centerlines of the road and the edges were dissolved to get rid of overlapping. <br>After having trouble with the saturation and splitting the raster into two separate rasters I decided to clip the data to a smaller extent. First, a new feature class was created and edited to input vertices. Then, going to image analysis I clipped the split value raster to the new feature class. With the smaller raster I was able to convert the raster to polygon features that still held the values field. I clipped the buffered roads and building outlines to the new smaller extent feature class using the normal clip tool. From here I used the erase tool to erase the buffered roads from the split polygons to get rid of the overhanging trees and bridges. Next, I exported the value 0 polygons to a new feature class. Then I erased the building outlines from this polygon to get only the trees. Additionally, I exported the value 1 polygons that identifies the ground without roads. Now I have different polygons for buildings, trees, roads, and the ground. I created new fields “SqFT” in extent and all four classified polygons and used calculate geometry to get the square footage of the extent and each classification.
+    </p>
+
+    <div class="row">
+      <div class="columnL">
+        <h3>Impervious Surfaces</h3>
+        <p>some text</p>
+      </div>
+      <div class="columnR">
+        <h3>Pervious Surfaces</h3>
+        <p>some text</p>
+      </div>
+    </div>
+
+    <p> Text about the results of the analysis</p>
+
+<h2 class="chart">Land Classification Percentages</h2>
+
+<canvas id="landClass"></canvas>
+  <script src='scripts.js'></script>
+
+<footer>
+  <ul>Data Reference:<br>Talebi L, et al. 2014. Automated classification of urban areas for storm water management using aerial photography and LiDAR. J Hydrol Eng 19(5):887-95. <br>TIGER/Lines Shapefiles. King County Roads. 2019. U.S. Census. <br>The National Map. Seattle NAIP Imagery. 1/11/2016. USGS. <br>City of Seattle Open Data Portal. Building Outlines 2015. 2015. City of Seattle. <br>Puget Sound LiDAR Consortium. Seattle Bare Earth/Highest Hits DEMs. 5/26/2016. Puget Sound LiDAR Consortium.</ul>
+    Created By: Cassidy Sawyer  Contact: csawyer4@uw.edu  Created Using: ArcMap 10.7.1, HTML5, CSS, JavaScript, GitHub  Projected Coordinate System: NAD 1983 HARN StatePlane Washington North FIPS 4601 Feet
+  </footer>
+  </body>
+</html>
