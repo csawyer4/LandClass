@@ -36,7 +36,11 @@ p {
   text-align: center;
   color: #003333;
 }
-
+.small {
+  font-family: serif;
+  font-size: .80 em;
+  color:#155151;
+}
 a {
   margin-top: 50px;
   display: block;
