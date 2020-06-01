@@ -36,7 +36,7 @@
     <div class="row">
       <div class="columnL">
         <h3>Impervious Surfaces</h3>
-        <img src="imperviousSurface.png" alt="Polygons of Buildings and Roofs." width=400px; height= 300px;>
+        <img src="imperviousSurface_fix.png" alt="Polygons of Buildings and Roofs." width=400px; height= 300px;>
         <p class="small"><strong>Figure 3:</strong> Building outlines (purple) and roads (grey) are impervious surfaces. The imagery is underneath and shows where there are green spaces but also some impervious surfaces that are not included like parkinglots.</p>
       </div>
       <div class="columnR">
@@ -46,10 +46,11 @@
       </div>
     </div>
 
-    <p> Text about the results of the analysis</p>
+    <p>Imagery from The National Map shows an aerial view over Downtown and Central Seattle helping with noticing the quality of the four classifications (Fig. 1). After the raster calculator split the raster into those above (0) and below (1) 6 feet Figure 2 is the result, showing buildings and trees (0) and roads and the ground (1). The total square footage of the extent used is 73,255,720.73 sqft. The total of all four classification polygons is 73,256,597.3 sqft. That means there is 876.6 sqft of area that is overlapping between the polygons, but this is a small percentage of the of the total. The buildings and roads are 29.85% and 18.26% respectively (Figure 3). The trees and ground make up 24.88% and 27.01% respectively (Figure 4). Looking at Figure 3 in particular you can see that some of the area denoted to ground in Figure 4 is actually parking lots and other paved areas. Meaning that the roads percentage/square footage should be higher, and that ground should be lower. Talebi et al. (2014) mentions that the “Sidewalks, driveways, alleys, storage areas and other such source areas need to be further evaluated manually”. This was not done manually as this was to classify different land use in a quick manner that would save time as apposed to doing the analysis manually. In conclusion, 48.11% of the small extent in Seattle is impervious surfaces, which should be higher, and 51.89% is pervious surface the water can permeate, which should be lower (Chart 1). Half of our urban areas do not allow water to percolate into the soil and this means half of our urban areas are contributing to urban flooding.
+    </p>
 
-<h2 class="chart">Land Classification Percentages</h2>
-
+<h2 class="chart">Seattle Land Classification Percentages</h2>
+<h3> Chart 1: Pie Chart of Land Classification
 <canvas id="landClass"></canvas>
   <script src='scripts.js'></script>
 

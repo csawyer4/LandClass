@@ -22,11 +22,10 @@ h2 {
   color: #155151;
 }
 .chart {
-  font-weight: 200;
+  font-weight: 300;
   font-size: 2em;
   color: #155151;
-  margin-top: 20px;
-  padding: 20px;
+  padding-top: 40px;
 }
 h3 {
   color: #155151;
@@ -50,8 +49,8 @@ a {
 canvas {
   width: 40%;
   height: 30%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 html {

@@ -11,7 +11,7 @@ var landData = {
   ],
   datasets: [
     {
-      data: [26.64, 24.53, 18.00, 30.83],
+      data: [27.01, 24.88, 18.26, 29.85],
       backgroundColor: [
         "#80ff80",
         "#008000",
